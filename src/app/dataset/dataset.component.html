@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quick Draw</title>
+        <style>
+            .bigheader{
+                font-size: 40px;
+            }
+            .cardcolor{
+                background-color: rgb(30, 255, 0);
+            }
+        </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body onload="init()" style="background-color:#1b0448">
+        <div class="mt-5 ml-5 btn" style="color: white;" routerLink="/home" routerLinkActive="active"><-- Back</div>
+        <div class="container-fluid">
+            <div class="row mt-3 ">
+                <div class="col-xl-3">
+                    <div class="row">
+                        <div class="col p-2 text-center" style="border: 2px solid blue; font-size: 25px; background-color: blue; color: white;">Steps to play</div>
+                    </div>
+                    <div class="row pl-1" >
+                        <ul style="color: white; font-size: larger;">
+                            <li style="padding-top: 20px;">Choose one of the Labels provided on
+                                the right.
+                                ( For eg. Sun. Flower, Umbrella)</li>
+                            <li style="padding-top: 20px;">Draw inside the given Canvas area.</li>
+                            <li style="padding-top: 20px;">Press 'Confirm Selection.</li>
+                            <li style="padding-top: 20px;">If you make a mistake in while drawing.
+                                press 'Clear Selection.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-6 text-center">
+                    <canvas id="myCanvas" width="600px" height="550px" style="border: 20px solid rgb(235, 192, 144); text-align: center;color: white;">
+                    </canvas>
+                    <script>
+                        var canvas = document.getElementById("myCanvas");
+                        var ctx = canvas.getContext("2d");
+                        ctx.font = "25px Courier New";
+                        ctx.fillStyle = "white";
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        ctx.fillStyle = "#06067e";
+                        ctx.fillText("Draw Inside this Canvas!",120,40);
+                    </script>
+                    <div class="row">
+                        <div class="col">
+                            <div style="color: white; text-align: right;">Choose Color</div>
+                        </div>
+                        <div class="col text-center m-1">
+                            <div class="row">
+                                <div style="margin: 2px; width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
+                                <div style="margin: 2px;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
+                                <div style="margin: 2px;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
+                                <div style="margin: 2px;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
+                                <div style="margin: 2px;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
+                                <div style="margin: 2px;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="row">
+                        <div class="col p-2 text-center" style="border: 2px solid blue; font-size: 25px; background-color: blue; color: white;">Choose from Labels</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="row" *ngFor="let data of links">
+                                <div class="col data text-center mt-2 p-2">{{ data.data }}
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col btn text-center mt-3 p-2" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><b>Confirm Selection</b></div>
+                            </div>
+                            <div class="row">
+                                <div class="col btn text-center mt-3 p-2" onclick="erase()" style="border: 2px solid rgb(255, 47, 75); background-color: rgb(255, 47, 75); border-radius: 25px; font-size: 20px; color:white;"><b>Clear Canvas</b></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .data{
+                border: 2px solid rgb(243, 181, 66);
+                color: rgb(243, 181, 66);
+            }
+            .data:hover{
+                background-color: rgb(243, 181, 66);
+                color: black;
+            }
+        </style>
+        <script type="text/javascript">
+            var canvas, ctx, flag = false,
+                prevX = 0,
+                currX = 0,
+                prevY = 0,
+                currY = 0,
+                dot_flag = false;
+            var x = "black",
+                y = 2;
+            
+            function init() {
+                canvas = document.getElementById('myCanvas');
+                ctx = canvas.getContext("2d");
+                w = canvas.width;
+                h = canvas.height;
+            
+                canvas.addEventListener("mousemove", function (e) {
+                    findxy('move', e)
+                }, false);
+                canvas.addEventListener("mousedown", function (e) {
+                    findxy('down', e)
+                }, false);
+                canvas.addEventListener("mouseup", function (e) {
+                    findxy('up', e)
+                }, false);
+                canvas.addEventListener("mouseout", function (e) {
+                    findxy('out', e)
+                }, false);
+            }
+            
+            function color(obj) {
+                switch (obj.id) {
+                    case "green":
+                        x = "green";
+                        break;
+                    case "blue":
+                        x = "blue";
+                        break;
+                    case "red":
+                        x = "red";
+                        break;
+                    case "yellow":
+                        x = "yellow";
+                        break;
+                    case "orange":
+                        x = "orange";
+                        break;
+                    case "black":
+                        x = "black";
+                        break;
+                    case "white":
+                        x = "white";
+                        break;
+                }
+                if (x == "white") y = 14;
+                else y = 2;
+            
+            }
+            
+            function draw() {
+                ctx.beginPath();
+                ctx.moveTo(prevX, prevY);
+                ctx.lineTo(currX, currY);
+                ctx.strokeStyle = x;
+                ctx.lineWidth = y;
+                ctx.stroke();
+                ctx.closePath();
+            }
+            function findxy(res, e) {
+                if (res == 'down') {
+                    console.log(e);
+                    prevX = currX;
+                    prevY = currY;
+                    currX = e.offsetX;
+                    currY = e.offsetY;
+            
+                    flag = true;
+                    dot_flag = true;
+                    if (dot_flag) {
+                        ctx.beginPath();
+                        ctx.fillStyle = x;
+                        ctx.fillRect(currX, currY, 2, 2);
+                        ctx.closePath();
+                        dot_flag = false;
+                    }
+                }
+                if (res == 'up' || res == "out") {
+                    flag = false;
+                }
+                if (res == 'move') {
+                    if (flag) {
+                        prevX = currX;
+                        prevY = currY;
+                        currX = e.offsetX;
+                        currY = e.offsetY;
+                        draw();
+                    }
+                }
+            }
+            function erase() {
+                var m = confirm("Want to clear");
+                if (m) {
+                    ctx.clearRect(0, 0, w, h);
+                    ctx.font = "25px Courier New";
+                    ctx.fillStyle = "white";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = "#06067e";
+                    ctx.fillText("Draw Inside this Canvas!",120,40);
+                }
+            }
+            </script>
+    </body>
+</html>
