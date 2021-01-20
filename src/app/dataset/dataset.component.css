@@ -1,0 +1,24 @@
+.color{
+    margin: 2px;
+    width:10px;
+    height:10px;
+}
+.canvas-bg{
+    border: 20px solid rgb(235, 192, 144); 
+    text-align: center; 
+    color: white;
+}
+.data{
+    border: 2px solid rgb(243, 181, 66);
+    color: rgb(243, 181, 66);
+}
+.data:hover{
+    background-color: rgb(243, 181, 66);
+    color: black;
+}
+.bigheader{
+    font-size: 40px;
+}
+.cardcolor{
+    background-color: rgb(30, 255, 0);
+}
