@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-
+// import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-dataset',
   templateUrl: './dataset.component.html',
@@ -17,14 +17,14 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     {id:'6',data:'Spoon'}
   ];
 
-  // colors = [
-  //   {id:'green',color:'green'},
-  //   {id:'blue',color:'blue'},
-  //   {id:'red',color:'red'},
-  //   {id:'yellow',color:'yellow'},
-  //   {id:'orange',color:'orange'},
-  //   {id:'black',color:'black'},
-  // ]
+  colors = [
+    {id:'green',color:'green'},
+    {id:'blue',color:'blue'},
+    {id:'red',color:'red'},
+    {id:'yellow',color:'yellow'},
+    {id:'orange',color:'orange'},
+    {id:'black',color:'black'},
+  ]
 
   constructor() {
     
@@ -38,6 +38,12 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#06067e";
     ctx.fillText("Draw Inside this Canvas!",120,40);
+
+    // this.http.post<any>('image/png', { title: 'Angular POST Request Example' }).subscribe({
+    //     next: data => {
+    //         this.postId = data.id;
+    //     },
+    // })
   }
   ngAfterViewInit(){
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;

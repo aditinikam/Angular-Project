@@ -12,7 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultComponent implements OnInit {
    
-  //colors 
+  colors = [
+    {id:'green',color:'green'},
+    {id:'blue',color:'blue'},
+    {id:'red',color:'red'},
+    {id:'yellow',color:'yellow'},
+    {id:'orange',color:'orange'},
+    {id:'black',color:'black'},
+  ]
 
   constructor() { 
   }
