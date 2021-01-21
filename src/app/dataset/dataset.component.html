@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-xl-6 text-center">
-                <canvas id="myCanvas" class="canvas-bg" onmousedown="down" onmousemove="move" onmouseup="up" onmouseout="out" width="600px" height="550px">
+                <canvas id="myCanvas" class="canvas-bg" width="600px" height="550px">
                 </canvas>
                 
                 <div class="row">
@@ -33,7 +33,7 @@
                             <div class="color" style="background:red;" id="red" onclick="color(this)"></div>
                             <div class="color" style="background:yellow;" id="yellow" onclick="color(this)"></div>
                             <div class="color" style="background:orange;" id="orange" onclick="color(this)"></div>
-                            <div class="color" style="background:black;" id="black" onclick="color(this)"></div>
+                            <div class="color" style="background:black;" id="black" onclick="color(this)"></div>                            
                         </div>
                     </div>
                 </div>
@@ -49,10 +49,10 @@
                             </div>
                         </div> 
                         <div class="row">
-                            <div class="col btn text-center mt-3 p-2" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><b>Confirm Selection</b></div>
+                            <div class="col btn text-center mt-3 p-2" id="save" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><strong>Confirm Selection</strong></div>
                         </div>
                         <div class="row">
-                            <div class="col btn text-center mt-3 p-2" onclick="erase()" style="border: 2px solid rgb(255, 47, 75); background-color: rgb(255, 47, 75); border-radius: 25px; font-size: 20px; color:white;"><b>Clear Canvas</b></div>
+                            <div class="col btn text-center mt-3 p-2" id="clear" style="border: 2px solid rgb(255, 47, 75); background-color: rgb(255, 47, 75); border-radius: 25px; font-size: 20px; color:white;"><strong>Clear Canvas</strong></div>
                         </div>
                     </div>
                     <div class="col-sm-1"></div>

@@ -16,6 +16,16 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     {id:'5',data:'House'},
     {id:'6',data:'Spoon'}
   ];
+
+  // colors = [
+  //   {id:'green',color:'green'},
+  //   {id:'blue',color:'blue'},
+  //   {id:'red',color:'red'},
+  //   {id:'yellow',color:'yellow'},
+  //   {id:'orange',color:'orange'},
+  //   {id:'black',color:'black'},
+  // ]
+
   constructor() {
     
    }
@@ -54,7 +64,6 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     }
     function findxy(res:string, e:any) {
       if (res == 'down') {
-          console.log(e);
           prevX = currX;
           prevY = currY;
           currX = e.offsetX;
@@ -83,6 +92,25 @@ export class DatasetComponent implements OnInit,AfterViewInit {
           }
       }
     }
+    const clear = document.getElementById("clear") as HTMLFormElement;
+    clear.onclick = function erase() {​​​​​​​
+      var m = confirm("Want to clear");
+      if (m) {​​​​​​​
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.font = "25px Courier New";
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = "#06067e";
+          ctx.fillText("Draw Inside this Canvas!",120,40);
+      }​​​​​​​
+    }
+
+    const save1 = document.getElementById("save") as HTMLFormElement;
+    save1.onclick = function save(){
+      var dataURL = canvas.toDataURL('image/png');
+        canvas.src = dataURL;
+    }
+
     function draw() {
       ctx.beginPath();
       ctx.moveTo(prevX, prevY);

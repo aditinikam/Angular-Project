@@ -6,27 +6,18 @@
             <div class="col-xl-6 text-center">
                 <canvas id="myCanvas" #canvas width="600px" height="550px" style="border: 20px solid rgb(235, 192, 144);text-align: center;color: white;">
                 </canvas>
-                <!-- <script>
-                    var canvas = document.getElementById("myCanvas");
-                    var ctx = canvas.getContext("2d");
-                    ctx.font = "25px Courier New";
-                    ctx.fillStyle = "white";
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = "#06067e";
-                    ctx.fillText("Draw Inside this Canvas!",120,40);
-                </script> -->
                 <div class="row">
                     <div class="col">
                         <div style="color: white; text-align: right;">Choose Color</div>
                     </div>
                     <div class="col text-center m-1">
                         <div class="row">
-                            <div style="margin: 2px; width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
-                            <div style="margin: 2px;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
-                            <div style="margin: 2px;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
-                            <div style="margin: 2px;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
-                            <div style="margin: 2px;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
-                            <div style="margin: 2px;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
+                            <div class="color" style="background:green;" id="green" onclick="color(this)"></div>
+                            <div class="color" style="background:blue;" id="blue" onclick="color(this)"></div>
+                            <div class="color" style="background:red;" id="red" onclick="color(this)"></div>
+                            <div class="color" style="background:yellow;" id="yellow" onclick="color(this)"></div>
+                            <div class="color" style="background:orange;" id="orange" onclick="color(this)"></div>
+                            <div class="color" style="background:black;" id="black" onclick="color(this)"></div>
                         </div>
                     </div>
                 </div>
@@ -35,10 +26,10 @@
                 <div class="row m-5"></div>
                 <div class="row m-5"></div> 
                 <div class="row text-center shadow">
-                    <div class="col btn text-center mt-3 p-2" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><b>Confirm Selection</b></div>
+                    <div class="col btn text-center mt-3 p-2" id="save" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><strong>Confirm Selection</strong></div>
                 </div>
                 <div class="row">
-                    <div class="col btn text-center mt-3 p-2" onclick="erase()" style="border: 2px solid rgb(255, 47, 75); background-color: rgb(255, 47, 75); border-radius: 25px; font-size: 20px; color:white;"><b>Clear Canvas</b></div>
+                    <div class="col btn text-center mt-3 p-2" id="clear" style="border: 2px solid rgb(255, 47, 75); background-color: rgb(255, 47, 75); border-radius: 25px; font-size: 20px; color:white;"><strong>Clear Canvas</strong></div>
                 </div>
             </div>
         </div>
