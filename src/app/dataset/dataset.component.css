@@ -22,3 +22,7 @@
 .cardcolor{
     background-color: rgb(30, 255, 0);
 }
+.links.selected{
+    background-color: coral;
+    color: black;
+}

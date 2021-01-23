@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 // import { HttpClientModule } from '@angular/common/http';
+// import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-dataset',
   templateUrl: './dataset.component.html',
@@ -9,12 +12,12 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 export class DatasetComponent implements OnInit,AfterViewInit {
 
   links = [
-    {id:'1',data:'Sun'},
-    {id:'2',data:'Flower'},
-    {id:'3',data:'Pencil'},
-    {id:'4',data:'Umbrella'},
-    {id:'5',data:'House'},
-    {id:'6',data:'Spoon'}
+    {id:1,data:'Sun'},
+    {id:2,data:'Flower'},
+    {id:3,data:'Pencil'},
+    {id:4,data:'Umbrella'},
+    {id:5,data:'House'},
+    {id:6,data:'Spoon'}
   ];
 
   colors = [
@@ -25,10 +28,30 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     {id:'orange',color:'orange'},
     {id:'black',color:'black'},
   ]
-
-  constructor() {
+//   selectedlinks: link;
+// onSelect(hero: Hero): void {
+//   this.selectedHero = hero;
+// }
+  constructor(public http : HttpClient) {
     
-   }
+  }
+  labelselect(){
+    var dataid=document.getElementById("select") as HTMLFormElement;
+  }  
+
+  // const resultArray = this.links.filter(f => f.id != 0).map(({​​​​​id}​​​​​) => id);
+  postreq(){
+    const canvas = document.getElementById("myCanvas") as HTMLFormElement;
+      var dataURL = canvas.toDataURL('image/png');
+        canvas.src = dataURL;
+      this.http.post("linkwheretobeuploaded",{
+        "image":dataURL,
+        "data":""
+      }).subscribe((val)=>{console.log("Post call successfull",val);},
+      response=>{console.log("Post call error",response);},
+      ()=>{console.log("The post observable completed");}
+      );
+    }
 
   ngOnInit(): void {
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
@@ -38,14 +61,12 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#06067e";
     ctx.fillText("Draw Inside this Canvas!",120,40);
-
-    // this.http.post<any>('image/png', { title: 'Angular POST Request Example' }).subscribe({
-    //     next: data => {
-    //         this.postId = data.id;
-    //     },
-    // })
   }
+
+  
+  
   ngAfterViewInit(){
+    
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
     const ctx = canvas.getContext('2d');
     var flag = false,
@@ -111,11 +132,7 @@ export class DatasetComponent implements OnInit,AfterViewInit {
       }​​​​​​​
     }
 
-    const save1 = document.getElementById("save") as HTMLFormElement;
-    save1.onclick = function save(){
-      var dataURL = canvas.toDataURL('image/png');
-        canvas.src = dataURL;
-    }
+    
 
     function draw() {
       ctx.beginPath();
