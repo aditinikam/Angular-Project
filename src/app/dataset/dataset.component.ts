@@ -3,6 +3,9 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 // import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+// import { clear } from 'console';
+var classname:string | null;
 @Component({
   selector: 'app-dataset',
   templateUrl: './dataset.component.html',
@@ -10,7 +13,6 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class DatasetComponent implements OnInit,AfterViewInit {
-
   links = [
     {id:1,data:'Sun'},
     {id:2,data:'Flower'},
@@ -28,39 +30,54 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     {id:'orange',color:'orange'},
     {id:'black',color:'black'},
   ]
-//   selectedlinks: link;
-// onSelect(hero: Hero): void {
-//   this.selectedHero = hero;
-// }
   constructor(public http : HttpClient) {
     
   }
-  labelselect(){
-    var dataid=document.getElementById("select") as HTMLFormElement;
+
+  labelselect(data:any){
+    classname=data;
   }  
 
-  // const resultArray = this.links.filter(f => f.id != 0).map(({​​​​​id}​​​​​) => id);
   postreq(){
-    const canvas = document.getElementById("myCanvas") as HTMLFormElement;
-      var dataURL = canvas.toDataURL('image/png');
-        canvas.src = dataURL;
-      this.http.post("linkwheretobeuploaded",{
-        "image":dataURL,
-        "data":""
-      }).subscribe((val)=>{console.log("Post call successfull",val);},
-      response=>{console.log("Post call error",response);},
-      ()=>{console.log("The post observable completed");}
-      );
+    // var className=document.getElementById("select") as HTMLFontElement;
+    if(classname===null){
+      console.log("NOT UPDATED");
+      return;
     }
+    const canvas = document.getElementById("myCanvas") as HTMLFormElement;
+    const ctx = canvas.getContext('2d');
+    var image = canvas.toDataURL('image/png');
+    var date= Date.now();
+    var filename=classname + "_" + date + ".png";
+    this.http.post(
+      environment.SERVER_URL + '/upload_canvas',
+      {filename,image,className:classname},
+      {responseType:'text'}
+    //"linkwheretobeuploaded",{
+    //   "image":dataURL,
+    //   "data":className.innerText
+    // }
+    ).subscribe((val)=>{console.log("Post call successfull",val);},
+    response=>{console.log("Post call error",response);},
+    ()=>{console.log("The post observable completed");}
+    );
+    // console.log(classname.innerHTML);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "15pt Courier New";
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#06067e";
+
+  }
 
   ngOnInit(): void {
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
     const ctx = canvas.getContext('2d');
-    ctx.font = "25px Courier New";
+    ctx.font = "15pt Courier New";
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#06067e";
-    ctx.fillText("Draw Inside this Canvas!",120,40);
+    // ctx.fillText("Draw Inside this Canvas!",40,40);
   }
 
   
@@ -124,11 +141,11 @@ export class DatasetComponent implements OnInit,AfterViewInit {
       var m = confirm("Want to clear");
       if (m) {​​​​​​​
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.font = "25px Courier New";
+          ctx.font = "15pt Courier New";
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = "#06067e";
-          ctx.fillText("Draw Inside this Canvas!",120,40);
+          // ctx.fillText("Draw Inside this Canvas!",40,40);
       }​​​​​​​
     }
 

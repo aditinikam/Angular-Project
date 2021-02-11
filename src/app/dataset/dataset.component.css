@@ -26,3 +26,9 @@
     background-color: coral;
     color: black;
 }
+.bgcolor{
+    position:absolute;
+    background-color: #1b0448; 
+    width: 100%;
+    height: 100%;
+}

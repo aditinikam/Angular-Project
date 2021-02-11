@@ -26,11 +26,11 @@ export class ResultComponent implements OnInit {
   ngOnInit(): void {
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
     const ctx = canvas.getContext('2d');
-    ctx.font = "25px Courier New";
+    ctx.font = "15pt Courier New";
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#06067e";
-    ctx.fillText("Draw Inside this Canvas!",120,40);
+    ctx.fillText("Draw Inside this Canvas!",40,40);
   }
   ngAfterViewInit(){
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
@@ -93,11 +93,11 @@ export class ResultComponent implements OnInit {
       var m = confirm("Want to clear");
       if (m) {​​​​​​​
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.font = "25px Courier New";
+          ctx.font = "15pt Courier New";
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = "#06067e";
-          ctx.fillText("Draw Inside this Canvas!",120,40);
+          ctx.fillText("Draw Inside this Canvas!",40,40);
       }​​​​​​​
     }
 

@@ -1,4 +1,4 @@
- <div onload="init()" style="background-color:#1b0448">
+ <div onload="init()" class="bgcolor">
     <div class="mt-5 ml-5 btn" style="color: white;" routerLink="/home" routerLinkActive="active"><-- Back</div>
     <div class="container-fluid">
         <div class="row mt-3 ">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-xl-6 text-center">
-                <canvas id="myCanvas" class="canvas-bg" width="600px" height="550px">
+                <canvas id="myCanvas" class="canvas-bg" width="384px" height="384px">
                 </canvas>
                 
                 <div class="row">
@@ -40,11 +40,11 @@
                 <div class="row">
                     <div class="col-sm-11">
                         <div class="row" *ngFor="let data of links" >
-                            <div class="col data text-center mt-2 p-2" id="select" (click)="labelselect()">{{ data.data }}
+                            <div class="col data text-center mt-2 p-2" (click)="labelselect(data.data)">{{ data.data }}
                             </div>
                         </div> 
                         <div class="row">
-                            <div class="col btn text-center mt-3 p-2" id="save" (click)="postreq()" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><strong>Confirm Selection</strong></div>
+                            <div class="col btn text-center mt-3 p-2" id="save" onclick="this.style.backgound=rgb(243, 181, 66);" (click)="postreq()" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><strong>Confirm Selection</strong></div>
                         </div>
                         <div class="row">
                             <div class="col btn text-center mt-3 p-2" id="clear" style="border: 2px solid rgb(255, 47, 75); background-color: rgb(255, 47, 75); border-radius: 25px; font-size: 20px; color:white;"><strong>Clear Canvas</strong></div>
