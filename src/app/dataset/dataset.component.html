@@ -40,11 +40,11 @@
                 <div class="row">
                     <div class="col-sm-11">
                         <div class="row" *ngFor="let data of links" >
-                            <div class="col data text-center mt-2 p-2" (click)="labelselect(data.data)">{{ data.data }}
+                            <div class="col data text-center mt-1 p-1" (click)="labelselect(data.data)">{{ data.data }}
                             </div>
                         </div> 
                         <div class="row">
-                            <div class="col btn text-center mt-3 p-2" id="save" onclick="this.style.backgound=rgb(243, 181, 66);" (click)="postreq()" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><strong>Confirm Selection</strong></div>
+                            <div class="col btn text-center mt-3 p-2" id="save" (click)="postreq()" style="border: 2px solid greenyellow; background-color: greenyellow; border-radius: 25px; font-size: 20px; color:rgb(6, 6, 126);;"><strong>Confirm Selection</strong></div>
                         </div>
                         <div class="row">
                             <div class="col btn text-center mt-3 p-2" id="clear" style="border: 2px solid rgb(255, 47, 75); background-color: rgb(255, 47, 75); border-radius: 25px; font-size: 20px; color:white;"><strong>Clear Canvas</strong></div>

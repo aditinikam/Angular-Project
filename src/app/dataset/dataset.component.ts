@@ -19,7 +19,11 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     {id:3,data:'Pencil'},
     {id:4,data:'Umbrella'},
     {id:5,data:'House'},
-    {id:6,data:'Spoon'}
+    {id:6,data:'Spoon'},
+    {id:7,data:'Tree'},
+    {id:8,data:'Bird'},
+    {id:9,data:'Hand'},
+    {id:10,data:'Spectacles'}
   ];
 
   colors = [
@@ -67,6 +71,7 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#06067e";
+    classname=null;
 
   }
 
