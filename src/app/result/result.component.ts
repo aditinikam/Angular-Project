@@ -12,15 +12,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultComponent implements OnInit {
    
-  colors = [
-    {id:'green',color:'green'},
-    {id:'blue',color:'blue'},
-    {id:'red',color:'red'},
-    {id:'yellow',color:'yellow'},
-    {id:'orange',color:'orange'},
-    {id:'black',color:'black'},
-  ]
-
   constructor() { 
   }
   ngOnInit(): void {
@@ -30,7 +21,6 @@ export class ResultComponent implements OnInit {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#06067e";
-    ctx.fillText("Draw Inside this Canvas!",40,40);
   }
   ngAfterViewInit(){
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
@@ -97,7 +87,6 @@ export class ResultComponent implements OnInit {
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = "#06067e";
-          ctx.fillText("Draw Inside this Canvas!",40,40);
       }​​​​​​​
     }
 
@@ -115,33 +104,6 @@ export class ResultComponent implements OnInit {
       ctx.lineWidth = y;
       ctx.stroke();
       ctx.closePath();
-    }
-    function color(obj:any):void {
-      switch (obj.id) {
-          case "green":
-              x = "green";
-              break;
-          case "blue":
-              x = "blue";
-              break;
-          case "red":
-              x = "red";
-              break;
-          case "yellow":
-              x = "yellow";
-              break;
-          case "orange":
-              x = "orange";
-              break;
-          case "black":
-              x = "black";
-              break;
-          case "white":
-              x = "white";
-              break;
-      }
-      if (x == "white") y = 14;
-      else y = 2;
     }
   }
 }

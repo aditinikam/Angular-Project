@@ -18,3 +18,13 @@ def upload_canvas():
     with open (f'{datasetPath}/{classname}/image/{filename}',"wb") as fh:
         fh.write(base64.decodebytes(image_data))
     return "Got the Image"
+
+@app.route('/get_classname', methods=['POST','GET'])
+def get_classname():
+    data = json.loads(request.data.decode('UTF-8'))
+    image_data = data['image'].split(',')[1].encode('UTF-8')
+    filename = data['filename']
+    os.makedir(f'{datasetPath}/{filename}/testimage',exist_ok=True)
+    with open (f'{datasetPath}/{filename}/testimage/{filename}',"wb") as fh:
+        fh.write(base64.decodebytes(image_data))
+    return "Got the Image"

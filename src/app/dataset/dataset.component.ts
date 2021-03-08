@@ -1,10 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-// import { HttpClientModule } from '@angular/common/http';
-// import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-// import { clear } from 'console';
+// var dataid:int
 var classname:string | null;
 @Component({
   selector: 'app-dataset',
@@ -23,27 +20,21 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     {id:7,data:'Tree'},
     {id:8,data:'Bird'},
     {id:9,data:'Hand'},
-    {id:10,data:'Spectacles'}
+    {id:10,data:'Mug'}
   ];
 
-  colors = [
-    {id:'green',color:'green'},
-    {id:'blue',color:'blue'},
-    {id:'red',color:'red'},
-    {id:'yellow',color:'yellow'},
-    {id:'orange',color:'orange'},
-    {id:'black',color:'black'},
-  ]
+  
   constructor(public http : HttpClient) {
     
   }
 
-  labelselect(data:any){
+  labelselect(data:any,id:any){
     classname=data;
+    // var dataid=id;
+    // dataid.style.backgroundcolor='orange';
   }  
 
   postreq(){
-    // var className=document.getElementById("select") as HTMLFontElement;
     if(classname===null){
       console.log("NOT UPDATED");
       return;
@@ -57,15 +48,10 @@ export class DatasetComponent implements OnInit,AfterViewInit {
       environment.SERVER_URL + '/upload_canvas',
       {filename,image,className:classname},
       {responseType:'text'}
-    //"linkwheretobeuploaded",{
-    //   "image":dataURL,
-    //   "data":className.innerText
-    // }
     ).subscribe((val)=>{console.log("Post call successfull",val);},
     response=>{console.log("Post call error",response);},
     ()=>{console.log("The post observable completed");}
     );
-    // console.log(classname.innerHTML);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.font = "15pt Courier New";
     ctx.fillStyle = "white";
@@ -98,7 +84,7 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     currY = 0,
     dot_flag = false;
     var x = "black",
-    y = 2;
+    y = 3;
     canvas.onmousemove=function (e) {
       findxy('move', e)
     }
@@ -154,8 +140,6 @@ export class DatasetComponent implements OnInit,AfterViewInit {
       }​​​​​​​
     }
 
-    
-
     function draw() {
       ctx.beginPath();
       ctx.moveTo(prevX, prevY);
@@ -164,33 +148,6 @@ export class DatasetComponent implements OnInit,AfterViewInit {
       ctx.lineWidth = y;
       ctx.stroke();
       ctx.closePath();
-    }
-    function color(obj:any):void {
-      switch (obj.id) {
-          case "green":
-              x = "green";
-              break;
-          case "blue":
-              x = "blue";
-              break;
-          case "red":
-              x = "red";
-              break;
-          case "yellow":
-              x = "yellow";
-              break;
-          case "orange":
-              x = "orange";
-              break;
-          case "black":
-              x = "black";
-              break;
-          case "white":
-              x = "white";
-              break;
-      }
-      if (x == "white") y = 14;
-      else y = 2;
     }
   }
 }

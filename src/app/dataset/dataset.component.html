@@ -12,7 +12,7 @@
                             the right.
                             ( For eg. Sun. Flower, Umbrella)</li>
                         <li style="padding-top: 20px;">Draw inside the given Canvas area.</li>
-                        <li style="padding-top: 20px;">Press 'Confirm Selection.</li>
+                        <li style="padding-top: 20px;">Press 'Confirm Selection'.</li>
                         <li style="padding-top: 20px;">If you make a mistake in while drawing.
                             press 'Clear Selection.</li>
                     </ul>
@@ -21,17 +21,6 @@
             <div class="col-xl-6 text-center">
                 <canvas id="myCanvas" class="canvas-bg" width="384px" height="384px">
                 </canvas>
-                
-                <div class="row">
-                    <div class="col">
-                        <div style="color: white; text-align: right;">Choose Color</div>
-                    </div>
-                    <div class="col text-center m-1">
-                        <div class="row">
-                            <div class="color" *ngFor="let color of colors" onclick="color(color.id)" id="color" [style.background-color]="color.color"></div>                         
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-xl-3">
                 <div class="row">
@@ -40,7 +29,7 @@
                 <div class="row">
                     <div class="col-sm-11">
                         <div class="row" *ngFor="let data of links" >
-                            <div class="col data text-center mt-1 p-1" (click)="labelselect(data.data)">{{ data.data }}
+                            <div class="col data text-center mt-1 p-1" (click)="labelselect(data.data, data.id)">{{ data.data }}
                             </div>
                         </div> 
                         <div class="row">
