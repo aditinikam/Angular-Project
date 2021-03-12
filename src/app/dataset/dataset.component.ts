@@ -45,7 +45,7 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     var date= Date.now();
     var filename=classname + "_" + date + ".png";
     this.http.post(
-      environment.SERVER_URL + '/upload_canvas',
+      environment.SERVER_URL + '/api/upload_canvas',
       {filename,image,className:classname},
       {responseType:'text'}
     ).subscribe((val)=>{console.log("Post call successfull",val);},

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import { fromEvent } from 'rxjs';
-// import { switchMap, takeUntil, pairwise } from 'rxjs/operators'
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-result',
@@ -11,8 +10,30 @@ import { Component, OnInit } from '@angular/core';
   styles: ['canvas { border: 1px solid #000; }']
 })
 export class ResultComponent implements OnInit {
+  http: any;
    
   constructor() { 
+  }
+  getreq(){
+    console.log("b");
+    const canvas = document.getElementById("myCanvas") as HTMLFormElement;
+    const ctx = canvas.getContext('2d');
+    var image = canvas.toDataURL('image/png');
+    var date= Date.now();
+    var filename=date + ".png";
+    this.http.post(
+      environment.SERVER_URL + '/api/get_classname',
+      {filename,image},
+      {responseType:'text'}
+    ).subscribe((val: any)=>{console.log("Post call successfull",val);},
+      (response: any)=>{console.log("Post call error",response);},
+    ()=>{console.log("The post observable completed");}
+    );
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "15pt Courier New";
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#06067e";
   }
   ngOnInit(): void {
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
