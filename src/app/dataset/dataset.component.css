@@ -6,7 +6,7 @@
 .canvas-bg{
     border: 20px solid rgb(235, 192, 144); 
     text-align: center; 
-    color: white;
+    background-color: white;
 }
 .data{
     border: 2px solid rgb(243, 181, 66);
@@ -22,7 +22,7 @@
 .cardcolor{
     background-color: rgb(30, 255, 0);
 }
-.links.selected{
+.links::after{
     background-color: coral;
     color: black;
 }

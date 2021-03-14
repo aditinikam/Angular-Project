@@ -53,22 +53,12 @@ export class DatasetComponent implements OnInit,AfterViewInit {
     ()=>{console.log("The post observable completed");}
     );
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "15pt Courier New";
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#06067e";
     classname=null;
 
   }
 
   ngOnInit(): void {
-    const canvas = document.getElementById("myCanvas") as HTMLFormElement;
-    const ctx = canvas.getContext('2d');
-    ctx.font = "15pt Courier New";
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#06067e";
-    // ctx.fillText("Draw Inside this Canvas!",40,40);
+    
   }
 
   
@@ -132,11 +122,6 @@ export class DatasetComponent implements OnInit,AfterViewInit {
       var m = confirm("Want to clear");
       if (m) {​​​​​​​
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.font = "15pt Courier New";
-          ctx.fillStyle = "white";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = "#06067e";
-          // ctx.fillText("Draw Inside this Canvas!",40,40);
       }​​​​​​​
     }
 

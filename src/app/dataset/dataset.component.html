@@ -13,7 +13,7 @@
                             ( For eg. Sun. Flower, Umbrella)</li>
                         <li style="padding-top: 20px;">Draw inside the given Canvas area.</li>
                         <li style="padding-top: 20px;">Press 'Confirm Selection'.</li>
-                        <li style="padding-top: 20px;">If you make a mistake in while drawing.
+                        <li style="padding-top: 20px;">If you make a mistake while drawing.
                             press 'Clear Selection.</li>
                     </ul>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col p-2 text-center" style="border: 2px solid blue; font-size: 25px; background-color: blue; color: white;">Choose from Labels</div>
                 </div>
-                <div class="row">
+                <div class="row mx-2">
                     <div class="col-sm-11">
                         <div class="row" *ngFor="let data of links" >
                             <div class="col data text-center mt-1 p-1" (click)="labelselect(data.data, data.id)">{{ data.data }}

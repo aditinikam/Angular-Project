@@ -8,16 +8,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import onnxruntime as ort
 
-allClasses = ['Bird', 'Flower', 'Hand', 'House','Mug','Pencil','Spoon','Sun', 'Tree', 'Umbrella']
-ort_session = ort. InferenceSession('./model.onnx')
+allClasses = ['Bird', 'Flower', 'Hand', 'House', 'Mug', 'Pencil', 'Spoon', 'Sun', 'Tree', 'Umbrella']
+ort_session = ort.InferenceSession('./model.onnx')
 def process(path):
     image = Image.fromarray(plt.imread(path)[:, :, 3])
-    image = image.resize((128, 128))
-    image = (np.array(image)>0).astype(np.float32)[None, :, :]
+    image = image.resize((64, 64))
+    image = (np.array(image)>0).astype(np.float32)
+    image = Image.fromarray(image)
+    image = np.array(image)[None, :, :]
     return image[None]
 
 def test(path):
-    image = process (path)
+    image = process(path)
     output = ort_session.run(None,{'data': image})[0].argmax()
     print (allClasses[output],output)
     return allClasses[output]
@@ -46,7 +48,7 @@ def get_classname():
     data = json.loads(request.data.decode('UTF-8'))
     image_data = data['image'].split(',')[1].encode('UTF-8')
     filename = data['filename']
-    os.makedir(f'{datasetPath}/{filename}/testimage',exist_ok=True)
-    with open (f'{datasetPath}/{filename}/testimage/{filename}',"wb") as fh:
+    os.makedirs(f'{datasetPath}/testimage',exist_ok=True)
+    with open (f'{datasetPath}/testimage/{filename}',"wb") as fh:
         fh.write(base64.decodebytes(image_data))
-    return test('{datasetPath}/{filename}/testimage/{filename}')
+    return test(f'{datasetPath}/testimage/{filename}')

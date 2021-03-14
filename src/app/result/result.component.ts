@@ -10,12 +10,11 @@ import { environment } from 'src/environments/environment';
   styles: ['canvas { border: 1px solid #000; }']
 })
 export class ResultComponent implements OnInit {
-  http: any;
-   
-  constructor() { 
+  classname="You are drawing";
+  constructor(public http : HttpClient) { 
   }
   getreq(){
-    console.log("b");
+    console.log("success");
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
     const ctx = canvas.getContext('2d');
     var image = canvas.toDataURL('image/png');
@@ -25,23 +24,28 @@ export class ResultComponent implements OnInit {
       environment.SERVER_URL + '/api/get_classname',
       {filename,image},
       {responseType:'text'}
-    ).subscribe((val: any)=>{console.log("Post call successfull",val);},
-      (response: any)=>{console.log("Post call error",response);},
+    ).subscribe((val)=>{
+      this.classname = val
+      ;console.log("Post call successfull",val);},
+      (response)=>{console.log("Post call error",response);},
     ()=>{console.log("The post observable completed");}
     );
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "15pt Courier New";
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#06067e";
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ctx.font = "15pt Courier New";
+    // ctx.fillStyle = "white";
+    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // ctx.fillStyle = "#06067e";
   }
-  ngOnInit(): void {
-    const canvas = document.getElementById("myCanvas") as HTMLFormElement;
-    const ctx = canvas.getContext('2d');
-    ctx.font = "15pt Courier New";
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#06067e";
+  // ngOnInit(): void {
+  //   // const canvas = document.getElementById("myCanvas") as HTMLFormElement;
+  //   // const ctx = canvas.getContext('2d');
+  //   // ctx.font = "15pt Courier New";
+  //   // ctx.fillStyle = "white";
+  //   // ctx.fillRect(0, 0, canvas.width, canvas.height);
+  //   // ctx.fillStyle = "#06067e";
+  // }
+  ngOnInit(){
+
   }
   ngAfterViewInit(){
     const canvas = document.getElementById("myCanvas") as HTMLFormElement;
@@ -53,7 +57,7 @@ export class ResultComponent implements OnInit {
     currY = 0,
     dot_flag = false;
     var x = "black",
-    y = 2;
+    y = 3;
     canvas.onmousemove=function (e) {
       findxy('move', e)
     }
@@ -104,10 +108,10 @@ export class ResultComponent implements OnInit {
       var m = confirm("Want to clear");
       if (m) {​​​​​​​
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.font = "15pt Courier New";
-          ctx.fillStyle = "white";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = "#06067e";
+          // ctx.font = "15pt Courier New";
+          // ctx.fillStyle = "white";
+          // ctx.fillRect(0, 0, canvas.width, canvas.height);
+          // ctx.fillStyle = "#06067e";
       }​​​​​​​
     }
 

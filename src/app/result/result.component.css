@@ -10,3 +10,8 @@
     width: 100%;
     height: 100vh;
 }
+.answer{
+    text-align: center; 
+    color: white;
+    font-size: 40px;
+}
