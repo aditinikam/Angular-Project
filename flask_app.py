@@ -1,4 +1,4 @@
-import os 
+import os
 from PIL import Image
 from flask import Flask,request
 import json
@@ -31,7 +31,7 @@ datasetPath = 'data'
 @app.route('/api/classname')
 def className():
     return "Hello World"
- 
+
 @app.route('/api/upload_canvas', methods=['POST'])
 def upload_canvas():
     data = json.loads(request.data.decode('UTF-8'))
